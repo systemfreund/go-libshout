@@ -36,8 +36,8 @@ const (
 
 const (
 	// See shout.h
-	SHOUTERR_SUCCESS     = 0  
-	SHOUTERR_INSANE      = -1 
+	SHOUTERR_SUCCESS     = 0
+	SHOUTERR_INSANE      = -1
 	SHOUTERR_NOCORRECT   = -2
 	SHOUTERR_NOLOGIN     = -3
 	SHOUTERR_SOCKET      = -4
@@ -50,15 +50,15 @@ const (
 )
 
 const (
-	FORMAT_OGG = 0
-	FORMAT_MP3 = 1
+	FORMAT_OGG  = 0
+	FORMAT_MP3  = 1
 	FORMAT_WEBM = 2
 )
 
 const (
-	PROTOCOL_HTTP = iota
-	PROTOCOL_XAUDIOCAST
-	PROTOCOL_ICY
+	PROTOCOL_HTTP       = 0
+	PROTOCOL_XAUDIOCAST = 1
+	PROTOCOL_ICY        = 2
 )
 
 type ShoutError struct {
