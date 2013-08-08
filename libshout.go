@@ -2,7 +2,6 @@ package shout
 
 import (
 	"fmt"
-	"net/url"
 	"unsafe"
 )
 
@@ -14,7 +13,7 @@ import (
 import "C"
 
 const (
-	SHOUT_BUFFER_SIZE = 4096
+	BUFFER_SIZE = 8192
 )
 
 const (
@@ -33,15 +32,15 @@ const (
 )
 
 const (
-	SHOUT_FORMAT_OGG = iota
-	SHOUT_FORMAT_MP3
-	SHOUT_FORMAT_WEBM
+	FORMAT_OGG = 0
+	FORMAT_MP3 = 1
+	FORMAT_WEBM = 2
 )
 
 const (
-	SHOUT_PROTOCOL_HTTP = iota
-	SHOUT_PROTOCOL_XAUDIOCAST
-	SHOUT_PROTOCOL_ICY
+	PROTOCOL_HTTP = iota
+	PROTOCOL_XAUDIOCAST
+	PROTOCOL_ICY
 )
 
 type ShoutError struct {
@@ -54,8 +53,8 @@ func (e ShoutError) Error() string {
 }
 
 type Shout struct {
-	Host     url.URL
-	Port     uint16
+	Host     string
+	Port     uint
 	User     string
 	Password string
 	Mount    string
@@ -93,7 +92,7 @@ func (s *Shout) lazyInit() {
 
 func (s *Shout) updateParameters() {
 	// set hostname
-	p := C.CString(s.Host.String())
+	p := C.CString(s.Host)
 	C.shout_set_host(s.struc, p)
 	C.free(unsafe.Pointer(p))
 
