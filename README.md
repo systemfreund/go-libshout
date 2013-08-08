@@ -1,7 +1,7 @@
 libshout.go
 ===========
 
-(Incomplete) Go binding for libshout 2.x
+(Incomplete but working) Go binding for libshout 2.x
 
 
 Example
