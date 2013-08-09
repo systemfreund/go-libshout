@@ -1,4 +1,4 @@
-libshout.go
+go-libshout
 ===========
 
 (Incomplete but working) Go binding for libshout 2.x
@@ -12,7 +12,7 @@ package main
 
 import (
 	"flag"
-	"github.com/systemfreund/libshout.go"
+	"github.com/systemfreund/go-libshout"
 	"os"
 	"io"
 )
