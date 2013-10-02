@@ -81,7 +81,8 @@ type Shout struct {
 
 	// wrap the native C struct
 	struc *C.struct_shout
-
+	metadata *C.struct_shout_metadata_t
+	
 	stream chan []byte
 }
 
@@ -190,4 +191,15 @@ func (s *Shout) handleStream() {
 	for buf := range s.stream {
 		s.send(buf)
 	}
+}
+
+func (s *Shout) UpdateMetadata( mds string ) {
+	md := C.shout_metadata_new()
+	ptr1 := C.CString("song")
+	ptr2 := C.CString(mds)
+	C.shout_metadata_add( md, ptr1, ptr2 )
+	C.free(unsafe.Pointer(ptr1))
+	C.free(unsafe.Pointer(ptr2))
+	C.shout_set_metadata( s.struc, md )
+	C.shout_metadata_free(md)
 }
