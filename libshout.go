@@ -193,10 +193,10 @@ func (s *Shout) handleStream() {
 	}
 }
 
-func (s *Shout) UpdateMetadata( mds string ) {
+func (s *Shout) UpdateMetadata( mname string, mvalue string ) {
 	md := C.shout_metadata_new()
-	ptr1 := C.CString("song")
-	ptr2 := C.CString(mds)
+	ptr1 := C.CString(mname)
+	ptr2 := C.CString(mvalue)
 	C.shout_metadata_add( md, ptr1, ptr2 )
 	C.free(unsafe.Pointer(ptr1))
 	C.free(unsafe.Pointer(ptr2))
